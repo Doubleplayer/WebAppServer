@@ -14,7 +14,10 @@ void safeResponse(var msg, HttpRequest req) {
 
 void HandleStatic(HttpRequest req) {
   var path = req.uri.path;
-  FileManager.sendFile(req, '/webApp/build' + path);
+  var pathGroup = path.split('/');
+  var filterpath =
+      '/' + pathGroup.sublist(pathGroup.lastIndexOf('static')).join('/');
+  FileManager.sendFile(req, '/webApp/build' + filterpath);
 }
 
 void ServerWebApp(HttpRequest req) {
